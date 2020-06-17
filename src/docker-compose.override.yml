@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+
+  pgsql:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=microservices
+    volumes: 
+      - pgsql_data:/var/lib/postgresql/data
+
+  microservices.nginx:
+    image: microservicesnginx
+    build: 
+      context: MicroServices.Nginx
+    depends_on: 
+      - microservices.web-1
+      - microservices.web-2
+    environment: 
+      - WEB_HOST_1=microservices.web-1
+      - WEB_HOST_2=microservices.web-2
+    ports: 
+      - "8899:80"
+
+  consul-client-1: &consul-agent
+    image: consul
+    restart: always
+    depends_on: 
+      - consul-server-bootstrap
+    command: "agent -retry-join consul-server-bootstrap -client 0.0.0.0"
+
+  consul-client-2:
+    <<: *consul-agent
+  
+  consul-client-3:
+    <<: *consul-agent
+  
+  consul-server-1: &consul-server
+    <<: *consul-agent
+    command: "agent -server -retry-join consul-server-bootstrap -client 0.0.0.0"
+  
+  consul-server-2:
+    <<: *consul-server
+  
+  consul-server-bootstrap:
+    <<: *consul-agent
+    ports: 
+      - "8440:8440"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    depends_on: 
+      - pgsql
+    command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0"

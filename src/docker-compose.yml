@@ -1,0 +1,79 @@
+version: '3.4'
+
+services:
+
+  microservices.orders-1: &service_orders
+    image: ${DOCKER_REGISTRY-}microservicesorders
+    build:
+      context: .
+      dockerfile: MicroServices.Orders/Dockerfile
+    restart: always
+    depends_on: 
+      - consul-client-1
+    env_file: 
+      - service_orders.env
+    environment: 
+      - SERVICE_HOST=microservices.orders-1
+
+  microservices.orders-2:
+    <<: *service_orders
+    environment: 
+      - SERVICE_HOST=microservices.orders-2
+
+  microservices.email-1: &service_email
+    image: ${DOCKER_REGISTRY-}microservicesemail
+    build:
+      context: .
+      dockerfile: MicroServices.Email/Dockerfile
+    restart: always
+    depends_on: 
+      - consul-client-2
+    env_file: 
+      - service_email.env
+    environment: 
+      - SERVICE_HOST=microservices.email-1
+
+  microservices.email-2:
+    <<: *service_email
+    environment: 
+      - SERVICE_HOST=microservices.email-2
+
+  microservices.sms-1: &service_sms
+    image: ${DOCKER_REGISTRY-}microservicessms
+    build:
+      context: .
+      dockerfile: MicroServices.SMS/Dockerfile
+    restart: always
+    depends_on: 
+      - consul-client-1
+    env_file: 
+      - service_sms.env
+    environment: 
+      - SERVICE_HOST=microservices.sms-1
+
+  microservices.sms-2:
+    <<: *service_sms
+    environment: 
+      - SERVICE_HOST=microservices.sms-2
+
+  microservices.sms-3:
+    <<: *service_sms
+    environment: 
+      - SERVICE_HOST=microservices.sms-3
+
+  microservices.web-1: &web
+    image: ${DOCKER_REGISTRY-}microservicesweb
+    build:
+      context: .
+      dockerfile: MicroServices.Web/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CONSUL_HOST=consul-client-3
+    depends_on: 
+      - consul-client-3
+
+  microservices.web-2:
+    <<: *web
+
+volumes: 
+  pgsql_data:

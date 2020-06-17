@@ -1,0 +1,57 @@
+﻿@page
+@model MicroServices.Web.Pages.Request.IndexModel
+@{
+    ViewData["Title"] = "Request";
+}
+
+<div class="card">
+    <div class="card-header">
+        Email
+    </div>
+    <div class="card-body">
+        <form method="post" asp-page-handler="Email">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="EmailRequest.Email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="EmailRequest.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="EmailRequest.Title" class="form-control" placeholder="Title" />
+                <span asp-validation-for="EmailRequest.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="EmailRequest.Body" class="form-control" placeholder="Body" />
+                <span asp-validation-for="EmailRequest.Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br /><div class="card">
+    <div class="card-header">
+        SMS
+    </div>
+    <div class="card-body">
+        <form method="post" asp-page="" asp-page-handler="Sms">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="SmsRequest.PhoneNum" class="form-control" placeholder="PhoneNum" />
+                <span asp-validation-for="SmsRequest.PhoneNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="SmsRequest.Msg" class="form-control" placeholder="Message" />
+                <span asp-validation-for="SmsRequest.Msg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

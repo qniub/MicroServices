@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.128
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Orders", "MicroServices.Orders\MicroServices.Orders.csproj", "{85522AB2-61AB-4FDD-AD8A-72CA6DF4046F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{744B41E3-E77D-4889-8F39-7AC4CF32DE7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.SMS", "MicroServices.SMS\MicroServices.SMS.csproj", "{559E2890-0D34-4187-8F48-B6FE07C6DF62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Email", "MicroServices.Email\MicroServices.Email.csproj", "{E423BC15-029F-4D90-A890-0209B8EC7AB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Models", "MicroServices.Models\MicroServices.Models.csproj", "{8755D2CF-2509-42E1-BE75-E689ABCD7E20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Web", "MicroServices.Web\MicroServices.Web.csproj", "{F6C68CFE-707C-439D-8237-3AB5AE3DD2C1}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{683F7D93-B8B9-4798-A7C9-6B915E932EE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85522AB2-61AB-4FDD-AD8A-72CA6DF4046F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85522AB2-61AB-4FDD-AD8A-72CA6DF4046F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85522AB2-61AB-4FDD-AD8A-72CA6DF4046F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85522AB2-61AB-4FDD-AD8A-72CA6DF4046F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559E2890-0D34-4187-8F48-B6FE07C6DF62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559E2890-0D34-4187-8F48-B6FE07C6DF62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559E2890-0D34-4187-8F48-B6FE07C6DF62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559E2890-0D34-4187-8F48-B6FE07C6DF62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E423BC15-029F-4D90-A890-0209B8EC7AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E423BC15-029F-4D90-A890-0209B8EC7AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E423BC15-029F-4D90-A890-0209B8EC7AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E423BC15-029F-4D90-A890-0209B8EC7AB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8755D2CF-2509-42E1-BE75-E689ABCD7E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8755D2CF-2509-42E1-BE75-E689ABCD7E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8755D2CF-2509-42E1-BE75-E689ABCD7E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8755D2CF-2509-42E1-BE75-E689ABCD7E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6C68CFE-707C-439D-8237-3AB5AE3DD2C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C68CFE-707C-439D-8237-3AB5AE3DD2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C68CFE-707C-439D-8237-3AB5AE3DD2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C68CFE-707C-439D-8237-3AB5AE3DD2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683F7D93-B8B9-4798-A7C9-6B915E932EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683F7D93-B8B9-4798-A7C9-6B915E932EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683F7D93-B8B9-4798-A7C9-6B915E932EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683F7D93-B8B9-4798-A7C9-6B915E932EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{85522AB2-61AB-4FDD-AD8A-72CA6DF4046F} = {744B41E3-E77D-4889-8F39-7AC4CF32DE7C}
+		{559E2890-0D34-4187-8F48-B6FE07C6DF62} = {744B41E3-E77D-4889-8F39-7AC4CF32DE7C}
+		{E423BC15-029F-4D90-A890-0209B8EC7AB8} = {744B41E3-E77D-4889-8F39-7AC4CF32DE7C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1949E1B5-7A62-464D-A9DE-0D8BCA450B62}
+	EndGlobalSection
+EndGlobal

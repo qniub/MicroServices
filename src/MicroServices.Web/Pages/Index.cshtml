@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Services";
+}
+
+@foreach (var service in Model.Services)
+{
+    <div class="card">
+        <div class="card-header">
+            <h5>@service.Key</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ServiceID</th>
+                            <th scope="col">ServiceAddress</th>
+                            <th scope="col">ServicePort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var catalog in service.Value)
+                        {
+                            <tr>
+                                <td>@catalog.ServiceID</td>
+                                <td>@catalog.ServiceAddress</td>
+                                <td>@catalog.ServicePort</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br />
+}
