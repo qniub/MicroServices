@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NXHub.EntityFrameworkCore.Migrater" Version="0.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.4" />
     <PackageReference Include="WebApiClient.Extensions.Consul" Version="0.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.5" />
   </ItemGroup>
 
 </Project>
