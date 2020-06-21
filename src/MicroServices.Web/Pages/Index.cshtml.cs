@@ -3,47 +3,59 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Consul;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace MicroServices.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly IConsulClient _consul;
+        private const string CONSUL_SERVICES = nameof(CONSUL_SERVICES);
 
         public IndexModel()
         {
-            _consul = new ConsulClient(options =>
-            {
-                string address = Environment.GetEnvironmentVariable("CONSUL_HOST");
-
-                options.Address = new Uri($"http://{address}:8500");
-            });
-
             Services = new Dictionary<string, CatalogService[]>();
         }
 
-        public IDictionary<string, CatalogService[]> Services { get; }
+        public bool IsHit { get; set; }
+        public IDictionary<string, CatalogService[]> Services { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(
+            [FromServices] IConsulClient consul,
+            [FromServices] IDistributedCache cache)
         {
-            QueryResult<Dictionary<string, string[]>> services = await _consul.Catalog.Services();
-
-            if (services.StatusCode == HttpStatusCode.OK)
+            if (!cache.TryGetObject(CONSUL_SERVICES, out IDictionary<string, CatalogService[]> values))
             {
-                foreach (string serviceName in services.Response.Keys)
-                {
-                    if (serviceName != "consul")
-                    {
-                        QueryResult<CatalogService[]> service = await _consul.Catalog.Service(serviceName);
+                QueryResult<Dictionary<string, string[]>> services = await consul.Catalog.Services();
 
-                        if (service.StatusCode == HttpStatusCode.OK)
+                if (services.StatusCode == HttpStatusCode.OK)
+                {
+                    values = new Dictionary<string, CatalogService[]>();
+
+                    foreach (string serviceName in services.Response.Keys)
+                    {
+                        if (serviceName != "consul")
                         {
-                            Services[serviceName] = service.Response;
+                            QueryResult<CatalogService[]> service =
+                                await consul.Catalog.Service(serviceName);
+
+                            if (service.StatusCode == HttpStatusCode.OK)
+                            {
+                                values[serviceName] = service.Response;
+                            }
                         }
                     }
+
+                    cache.SetObject(CONSUL_SERVICES, values, TimeSpan.FromSeconds(10));
                 }
             }
+            else
+            {
+                this.IsHit = true;
+            }
+
+            Services = values ?? Services;
         }
     }
 }

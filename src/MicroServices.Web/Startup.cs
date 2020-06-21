@@ -28,6 +28,13 @@ namespace MicroServices.Web
                 options.Address = new Uri($"http://{address}:8500");
             });
 
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "cache";
+
+                options.InstanceName = "microservices.web";
+            });
+
             services.AddHttpApiClient<ISmsApi>("service_sms");
 
             services.AddHttpApiClient<IEmailApi>("service_email");

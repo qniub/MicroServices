@@ -2,6 +2,10 @@ version: '3.4'
 
 services:
 
+  cache:
+    image: redis
+    restart: always
+
   pgsql:
     image: postgres
     restart: always
@@ -122,6 +126,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - CONSUL_HOST=consul-client-3
     depends_on: 
+      - cache
       - consul-client-3
 
   microservices.web-2:
