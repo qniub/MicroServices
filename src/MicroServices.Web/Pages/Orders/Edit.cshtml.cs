@@ -17,7 +17,7 @@ namespace MicroServices.Web.Pages.Orders
         }
 
         [BindProperty]
-        public Order Order { get; set; }
+        public OrderInfo Order { get; set; }
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {

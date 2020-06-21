@@ -1,6 +1,6 @@
 ﻿namespace MicroServices.Models
 {
-    public class EmailRequest
+    public class EmailInfo
     {
         public string Email { get; set; }
         public string Title { get; set; }

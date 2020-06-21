@@ -11,8 +11,8 @@ namespace MicroServices.Web.Pages.Request
     [IgnoreAntiforgeryToken]
     public class IndexModel : PageModel
     {
-        public SmsRequest SmsRequest { get; set; }
-        public EmailRequest EmailRequest { get; set; }
+        public SmsInfo SmsRequest { get; set; }
+        public EmailInfo EmailRequest { get; set; }
 
         public async Task<IActionResult> OnPostEmailAsync([FromServices] IEmailApi api)
         {

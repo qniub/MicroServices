@@ -16,7 +16,7 @@ namespace MicroServices.Web.Pages.Orders
             _api = api;
         }
 
-        public List<Order> Orders { get; set; }
+        public List<OrderInfo> Orders { get; set; }
 
         public async Task OnGetAsync()
         {

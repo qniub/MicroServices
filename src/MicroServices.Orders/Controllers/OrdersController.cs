@@ -21,17 +21,17 @@ namespace MicroServices.Orders.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
+        public async Task<ActionResult<IEnumerable<OrderInfo>>> GetOrder()
         {
-            return await _context.Order.ToListAsync();
+            return await _context.OrderInfoes.ToListAsync();
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Order>> GetOrder(long id)
+        public async Task<ActionResult<OrderInfo>> GetOrder(long id)
         {
-            Order order = await _context.Order.FindAsync(id);
+            OrderInfo order = await _context.OrderInfoes.FindAsync(id);
 
             if (order == null)
             {
@@ -46,7 +46,7 @@ namespace MicroServices.Orders.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PutOrder(long id, Order order)
+        public async Task<IActionResult> PutOrder(long id, OrderInfo order)
         {
             if (id != order.Id)
             {
@@ -77,16 +77,14 @@ namespace MicroServices.Orders.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<OrderInfo>> PostOrder(OrderInfo order)
         {
             if (this.OrderExists(order.Id))
             {
                 return Conflict();
             }
 
-            order.Id = 0;
-
-            _context.Order.Add(order);
+            _context.OrderInfoes.Add(order);
 
             await _context.SaveChangesAsync();
 
@@ -96,16 +94,16 @@ namespace MicroServices.Orders.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Order>> DeleteOrder(long id)
+        public async Task<ActionResult<OrderInfo>> DeleteOrder(long id)
         {
-            Order order = await _context.Order.FindAsync(id);
+            OrderInfo order = await _context.OrderInfoes.FindAsync(id);
 
             if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Order.Remove(order);
+            _context.OrderInfoes.Remove(order);
 
             await _context.SaveChangesAsync();
 
@@ -114,7 +112,7 @@ namespace MicroServices.Orders.Controllers
 
         private bool OrderExists(long id)
         {
-            return _context.Order.Any(e => e.Id == id);
+            return _context.OrderInfoes.Any(e => e.Id == id);
         }
     }
 }

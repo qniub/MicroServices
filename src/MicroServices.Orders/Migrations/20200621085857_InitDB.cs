@@ -8,7 +8,7 @@ namespace MicroServices.Orders.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "OrderInfoes",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -18,11 +18,11 @@ namespace MicroServices.Orders.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.PrimaryKey("PK_OrderInfoes", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
-                table: "Order",
+                table: "OrderInfoes",
                 columns: new[] { "Id", "Name", "Price" },
                 values: new object[,]
                 {
@@ -35,7 +35,7 @@ namespace MicroServices.Orders.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderInfoes");
         }
     }
 }

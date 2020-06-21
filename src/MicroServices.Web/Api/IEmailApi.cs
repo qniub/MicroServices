@@ -7,12 +7,12 @@ namespace MicroServices.Web.Api
     public interface IEmailApi
     {
         [HttpPost("/api/email/" + nameof(Send_QQ))]
-        Task<string> Send_QQ([JsonContent] EmailRequest model);
+        Task<string> Send_QQ([JsonContent] EmailInfo model);
 
         [HttpPost("/api/email/" + nameof(Send_Outlook))]
-        Task<string> Send_Outlook([JsonContent] EmailRequest model);
+        Task<string> Send_Outlook([JsonContent] EmailInfo model);
 
         [HttpPost("/api/email/" + nameof(Send_Google))]
-        Task<string> Send_Google([JsonContent] EmailRequest model);
+        Task<string> Send_Google([JsonContent] EmailInfo model);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MicroServices.Models
 {
-    public class Order
+    public class OrderInfo
     {
         public long Id { get; set; }
         public string Name { get; set; }

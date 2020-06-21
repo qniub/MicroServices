@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MicroServices.Orders.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20200531021707_InitDB")]
+    [Migration("20200621085857_InitDB")]
     partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,10 +17,10 @@ namespace MicroServices.Orders.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("MicroServices.Orders.Models.Order", b =>
+            modelBuilder.Entity("MicroServices.Models.OrderInfo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,25 +35,25 @@ namespace MicroServices.Orders.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
+                    b.ToTable("OrderInfoes");
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
-                            Name = "Suface Pro 5",
+                            Name = "Surface Pro 5",
                             Price = 8888.0
                         },
                         new
                         {
                             Id = 2L,
-                            Name = "Suface Pro 6",
+                            Name = "Surface Pro 6",
                             Price = 9999.0
                         },
                         new
                         {
                             Id = 3L,
-                            Name = "Suface Pro 7",
+                            Name = "Surface Pro 7",
                             Price = 8899.0
                         });
                 });

@@ -24,6 +24,14 @@ namespace MicroServices.Orders
                 .GetEnvironmentVariable("PGSQL_CONNSTR")
                 ?.Trim('"');
 
+            //string connStr =
+            //    "Host=localhost;" +
+            //    "Port=5432;" +
+            //    "User ID=postgres;" +
+            //    "Password=microservices;" +
+            //    "Database=orders;" +
+            //    "Pooling=true;";
+
             services.AddDbContext<OrdersContext>(
                 options => options.UseNpgsql(connStr));
 

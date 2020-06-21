@@ -1,6 +1,6 @@
 ﻿namespace MicroServices.Models
 {
-    public class SmsRequest
+    public class SmsInfo
     {
         public string PhoneNum { get; set; }
         public string Msg { get; set; }
