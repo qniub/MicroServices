@@ -6,6 +6,7 @@ using Consul;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Caching.Distributed;
+using NXHub.Extensions.Caching;
 
 namespace MicroServices.Web.Pages
 {

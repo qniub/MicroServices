@@ -4,6 +4,11 @@
     ViewData["Title"] = "Services";
 }
 
+@if (Model.IsHit)
+{
+    <p><em>From Cache.</em></p>
+}
+
 @foreach (var service in Model.Services)
 {
     <div class="card">
@@ -36,9 +41,4 @@
     </div>
 
     <br />
-}
-
-@if (Model.IsHit)
-{
-    <p><em>From Cache.</em></p>
 }
