@@ -1,0 +1,31 @@
+﻿@page "/"
+@inject IOrdersApi _client
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in _orders)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    private List<OrderInfo> _orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _orders = await _client.Get();
+    }
+}
