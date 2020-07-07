@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ocelot.Provider.Consul;
 
 namespace MicroServices.Api
 {
@@ -19,7 +20,8 @@ namespace MicroServices.Api
         {
             services.AddControllers();
 
-            services.AddOcelot(OcelotConfig.Configuration);
+            services.AddOcelot(OcelotConfig.Configuration)
+                .AddConsul();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

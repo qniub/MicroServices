@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ocelot.Configuration.File;
 
 namespace MicroServices.Api
@@ -7,6 +8,12 @@ namespace MicroServices.Api
     {
         public static void Configuration(FileConfiguration config)
         {
+            config.GlobalConfiguration.BaseUrl = "http://localhost:80";
+
+            config.GlobalConfiguration.ServiceDiscoveryProvider.Host =
+                Environment.GetEnvironmentVariable("CONSUL_HOST");
+            config.GlobalConfiguration.ServiceDiscoveryProvider.Type = "Consul";
+
             config.Routes.Add(new FileRoute
             {
                 DownstreamPathTemplate = "/",
@@ -15,19 +22,28 @@ namespace MicroServices.Api
                 {
                     new FileHostAndPort
                     {
-                        Host = "checkip.amazonaws.com",
                         Port = 443,
+                        Host = "checkip.amazonaws.com",
                     },
                 },
 
                 UpstreamPathTemplate = "/api/values",
-                UpstreamHttpMethod = new List<string>
-                {
-                    "Get",
-                },
+                UpstreamHttpMethod = new List<string> { "Get" },
             });
 
-            config.GlobalConfiguration.BaseUrl = "http://localhost:5000";
+            config.Routes.Add(new FileRoute
+            {
+                ServiceName = "service_orders",
+                DownstreamPathTemplate = "/api/orders",
+
+                UpstreamPathTemplate = "/api/orders",
+                UpstreamHttpMethod = new List<string> { "Get" },
+
+                LoadBalancerOptions  = new FileLoadBalancerOptions
+                {
+                    Type = "LeastConnection",
+                },
+            });
         }
     }
 }

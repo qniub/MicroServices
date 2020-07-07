@@ -4,11 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties ocelot_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
-
   <ItemGroup>
-    <PackageReference Include="NXHub.Extensions.Ocelot" Version="0.0.1" />
+    <PackageReference Include="NXHub.Extensions.Ocelot" Version="0.0.2" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="16.0.1" />
   </ItemGroup>
-
-
+  
 </Project>
