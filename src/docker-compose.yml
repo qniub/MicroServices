@@ -132,5 +132,19 @@ services:
   microservices.web-2:
     <<: *web
 
+  microservices.gateway:
+    image: ${DOCKER_REGISTRY-}microservicesapi
+    build:
+      context: .
+      dockerfile: MicroServices.Api/Dockerfile
+    restart: always
+    environment: 
+      - CONSUL_HOST=consul-client-3
+    depends_on: 
+      - microservices.orders-1
+      - microservices.orders-2
+    ports: 
+      - "8080:80"
+
 volumes: 
   pgsql_data:
